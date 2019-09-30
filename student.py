@@ -17,7 +17,8 @@ class Piggy(PiggyParent):
         '''
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
-        self.MIDPOINT = 1500  # what servo command (1000-2000) is straight forward for your bot?
+        self.MIDPOINT = 1500  
+        self.load_defult()# what servo command (1000-2000) is straight forward for your bot?
         
 
     def load_defaults(self):
@@ -53,7 +54,14 @@ class Piggy(PiggyParent):
     '''
 
     def dance(self):
-        print("I don't know how to dance. \nPlease give my programmer a zero.")
+        # print("I don't know how to dance. \nPlease give my programmer a zero.")
+        # higher ordered
+        for x in range(4):
+            self.floss
+            self.spin
+            self.chacha
+            self.shuffle
+
 
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
@@ -70,7 +78,18 @@ class Piggy(PiggyParent):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
 
-
+    def floss(self):
+        #coming soon
+        pass
+    def spin(self):
+        #also coming soon
+        pass
+    def chacha(self):
+        #again coming soon
+        pass
+    def shuffle(self):
+        # for the last time coming soon
+        pass
 
 
 ###########
