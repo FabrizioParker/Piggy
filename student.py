@@ -1,6 +1,6 @@
 from teacher import PiggyParent
 import sys
-
+import time
 class Piggy(PiggyParent):
 
     '''
@@ -79,8 +79,13 @@ class Piggy(PiggyParent):
         print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
 
     def floss(self):
-        #coming soon
-        pass
+        self.right()
+        time.sleep(1)
+        self.stop()
+        self.left()
+        time.sleep(1)
+        self.stop
+
     def spin(self):
         #also coming soon
         pass
