@@ -18,7 +18,7 @@ class Piggy(PiggyParent):
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
         self.MIDPOINT = 1500  
-        self.load_defult()# what servo command (1000-2000) is straight forward for your bot?
+        self.load_defaults()# what servo command (1000-2000) is straight forward for your bot?
         
 
     def load_defaults(self):
