@@ -87,11 +87,11 @@ class Piggy(PiggyParent):
         self.stop()
 
     def spin(self):
-        #self.fwd()
-        #time.sleep(1)
-        #self.right()
-        #time.sleep(3)
-        #self.stop() 
+        self.fwd()
+        time.sleep(1)
+        self.right()
+        time.sleep(3)
+        self.stop() 
         self.back()
         time.sleep(1)
         self.left()
