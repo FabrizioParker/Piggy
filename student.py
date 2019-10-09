@@ -95,7 +95,7 @@ class Piggy(PiggyParent):
         self.back()
         time.sleep(1)
         self.left()
-        time.sleep(4)
+        time.sleep(3)
         self.stop()
 
     def chacha(self):
