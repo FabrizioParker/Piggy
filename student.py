@@ -57,7 +57,7 @@ class Piggy(PiggyParent):
         # print("I don't know how to dance. \nPlease give my programmer a zero.")
         # higher ordered
         for x in range(4):
-            self.floss()
+            #self.twist()
             self.spin()
             self.chacha()
             self.shuffle()
@@ -78,7 +78,7 @@ class Piggy(PiggyParent):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
 
-    def floss(self):
+    def twist(self):
         self.right()
         time.sleep(1)
         self.stop()
@@ -87,8 +87,12 @@ class Piggy(PiggyParent):
         self.stop()
 
     def spin(self):
-        #also coming soon
-        pass
+        self.fwd()
+        time.sleep(1)
+        self.right()
+        time.sleep(3)
+        self.stop()
+        
     def chacha(self):
         #again coming soon
         pass
