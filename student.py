@@ -57,7 +57,7 @@ class Piggy(PiggyParent):
         # print("I don't know how to dance. \nPlease give my programmer a zero.")
         # higher ordered
         for x in range(1):
-            #self.twist()
+            self.twist()
             self.spin()
             self.chacha()
             self.shuffle()
