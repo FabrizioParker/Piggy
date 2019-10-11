@@ -101,7 +101,17 @@ class Piggy(PiggyParent):
     def chacha(self):
         self.left()
         time.sleep(2)
+        self.stop()
+        self.back()
+        time.sleep(1)
+        self.stop()
+        self.fwd()
+        time.sleep(1)
+        self.stop()
         self.right()
+        time.sleep(2)
+        self.stop()
+
         
     def shuffle(self):
         # for the last time coming soon
