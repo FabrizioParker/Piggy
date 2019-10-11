@@ -99,22 +99,28 @@ class Piggy(PiggyParent):
         self.stop()
 
     def chacha(self):
-        self.left()
+        self.right()
         time.sleep(2)
         self.stop()
         self.back()
+        time.sleep(1)
+        self.servo(1000)
+        self.stop()
         time.sleep(1)
         self.stop()
         self.fwd()
         time.sleep(1)
         self.stop()
-        self.right()
+        self.servo(2000)
+        time.sleep(2)
+        self.stop()
+        self.left()
         time.sleep(2)
         self.stop()
 
         
     def shuffle(self):
-        # for the last time coming soon
+        #coming soon
         pass
 
 
