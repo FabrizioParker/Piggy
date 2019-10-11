@@ -57,10 +57,10 @@ class Piggy(PiggyParent):
         # print("I don't know how to dance. \nPlease give my programmer a zero.")
         # higher ordered
         for x in range(1):
-            self.twist()
-            self.spin()
+            #self.twist()
+            #self.spin()
             self.chacha()
-            self.shuffle()
+            #self.shuffle()
 
 
     def scan(self):
@@ -99,24 +99,23 @@ class Piggy(PiggyParent):
         self.stop()
 
     def chacha(self):
-        self.right()
-        time.sleep(2)
-        self.stop()
-        self.back()
-        time.sleep(1)
+        #self.right()
+        #time.sleep(2)
+        #self.stop()
+        #self.back()
+        #time.sleep(1)
         self.servo(1000)
-        self.stop()
         time.sleep(1)
         self.stop()
-        self.fwd()
-        time.sleep(1)
-        self.stop()
+        #self.fwd()
+        #time.sleep(1)
+        #self.stop()
         self.servo(2000)
         time.sleep(2)
         self.stop()
-        self.left()
-        time.sleep(2)
-        self.stop()
+        #self.left()
+        #time.sleep(2)
+        #self.stop()
 
         
     def shuffle(self):
