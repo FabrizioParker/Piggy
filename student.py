@@ -119,8 +119,14 @@ class Piggy(PiggyParent):
 
         
     def shuffle(self):
-        #coming soon
-        pass
+        self.turn_by_deg(20)
+        time.sleep(.25)
+        self.fwd()
+        time.sleep(2)
+        self.stop()
+        self.back()
+        time.sleep(2)
+        self.stop()
 
 
 ###########
