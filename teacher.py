@@ -5,6 +5,7 @@
 # Copyright (c) 2017 Dexter Industries
 # Released under the MIT license (http://choosealicense.com/licenses/mit/).
 # For more information see https://github.com/DexterInd/GoPiGo3/blob/master/LICENSE.md
+# Distance sensor and IMU both plugged into I2C
 import gopigo3, sys, time
 from di_sensors.easy_distance_sensor import EasyDistanceSensor
 from di_sensors import inertial_measurement_unit
@@ -18,8 +19,12 @@ class PiggyParent(gopigo3.GoPiGo3):
     def __init__(self, addr=8, detect=True):
         gopigo3.GoPiGo3.__init__(self)
         self.scan_data = {}
-        self.distance_sensor = EasyDistanceSensor()
-        self.imu = inertial_measurement_unit.InertialMeasurementUnit(bus = "GPG3_AD1")
+        # mutex sensors on IC2
+        self.distance_sensor = EasyDistanceSensor(port="RPI_1", use_mutex=True)
+        self.imu = inertial_measurement_unit.InertialMeasurementUnit(bus="RPI_1", use_mutex=True)
+        # buffer for reading the gyro
+        self.gyro_buffer = 0
+        self.stop()
 
     def calibrate(self):
         """allows user to experiment on finding centered midpoint and even motor speeds"""
@@ -30,18 +35,18 @@ class PiggyParent(gopigo3.GoPiGo3):
             while True:
                 response = str.lower(input("Turn right, left, or am I done? (r/l/d): "))
                 if response == "r":
-                    self.MIDPOINT += 25
-                    print("Midpoint: " + str(self.MIDPOINT))
-                    self.servo(self.MIDPOINT)
-                elif response == "l":
                     self.MIDPOINT -= 25
                     print("Midpoint: " + str(self.MIDPOINT))
                     self.servo(self.MIDPOINT)
+                elif response == "l":
+                    self.MIDPOINT += 25
+                    print("Midpoint: " + str(self.MIDPOINT))
+                    self.servo(self.MIDPOINT)
                 else:
-                    print("Midpoint now saved to: " + str(self.MIDPOINT))
+                    print("Midpoint temporarily saved to: " + str(self.MIDPOINT) + "\nYou'll need to update your magic number.")
                     break
         else:
-            print('Okay, remember %d as the correct self.MIDPOINT' % self.MIDPOINT)
+            print('Cool, %d is the correct self.MIDPOINT' % self.MIDPOINT)
         response = str.lower(input("Do you want to check if I'm driving straight? (y/n)"))
         if 'y' in response:
             while True:
@@ -80,29 +85,47 @@ class PiggyParent(gopigo3.GoPiGo3):
         self.set_motor_position(self.MOTOR_LEFT + self.MOTOR_RIGHT, deg)
 
     def turn_by_deg(self, deg):
-        #higher - ordered
-        #get current location
+        """Rotates robot relative to it's current heading. If told -20, it
+        will rotate left by 20 degrees."""
+
+        # get our current angle
         current = self.get_heading()
-        #calculate delta
+
+        # calculate delta
         goal = current + deg
-        #loop around the circle
-        if goal > 360:
-            goal -= 360
-        elif goal < 0:
-            goal +=360
-        #call turn to degree on the delta
+
+        # LOOP AROUND THE 360 marker
+        goal %= 360
+
+        # call turn to deg on the delta
         self.turn_to_deg(goal)
-        pass
+        
 
     def turn_to_deg(self, deg):
-        #lower ordered
-        # Extra credit turn left if it is more efficent
-        #while loop - keep turning until gyro says there
-        while abs(deg- self.get_heading()) > 5:
-            self.right(primary = 60, counter = -60)
+        """Turns to a degree relative to the gyroscope's readings. If told 20, it
+        will rotate until the gyroscope reads 20."""
+
+        # error check
+        goal = abs(deg) % 360
+        current = self.get_heading()
+
+        turn = self.right  # connect it to the method without the () to activate
+        if (current - goal > 0 and current - goal < 180) or \
+            (current - goal < 0 and (360 - goal) + current < 180):
+            turn = self.left
+
+        
+        # while loop - keep turning until my gyro says I'm there
+        while abs(deg - self.get_heading()) > 3:
+            turn(primary=70, counter=-70)
+            time.sleep(.05) # avoid spamming the gyro
+
+        # once out of the loop, hit the brakes
         self.stop()
-        print("I think I have turned corectly")
-        pass
+        # report out to the user
+        print("\n{} is close enough to {}.\n".format(self.get_heading(), deg))
+
+
 
     def fwd(self, left=50, right=50):
         """Blindly charges your robot forward at default power which needs to be configured in child class"""
@@ -153,7 +176,12 @@ class PiggyParent(gopigo3.GoPiGo3):
         return d
 
     def get_heading(self):
-        """Returns the heading from the IMU sensor"""
-        reading = self.imu.read_euler()[0]
-        print("Gyroscope sensor is at: {} degrees ".format(reading))
-        return reading
+        """Returns the heading from the IMU sensor, or if there's a sensor exception, it returns
+        the last saved reading"""
+        try:
+            self.gyro_buffer = self.imu.read_euler()[0]
+            print("Gyroscope sensor is at: {} degrees ".format(self.gyro_buffer))
+        except Exception as e:
+            print("----- PREVENTED GYRO SENSOR CRASH -----")
+            print(e)
+        return self.gyro_buffer
