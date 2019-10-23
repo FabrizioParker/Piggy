@@ -56,6 +56,12 @@ class Piggy(PiggyParent):
     def dance(self):
         # print("I don't know how to dance. \nPlease give my programmer a zero.")
         # higher ordered
+        #check to see its safe
+        if not self.safe_to_dance():
+            print("It is too dangerouse to dance")
+            return
+        else:
+            print("time to dance")
         for x in range(1):
             #self.twist()
             #self.spin()
@@ -111,11 +117,12 @@ class Piggy(PiggyParent):
         #time.sleep(1)
         #self.stop()
         self.servo(2000)
-        time.sleep(2)
+        time.sleep(1)
         self.stop()
         #self.left()
         #time.sleep(2)
         #self.stop()
+
 
         
     def shuffle(self):
@@ -127,6 +134,18 @@ class Piggy(PiggyParent):
         self.back()
         time.sleep(2)
         self.stop()
+    
+    def safe_to_dance(self):
+        for x in range(4):
+            for ang in range(1000, 2001, 100):
+                self.servo(ang)
+                time.sleep(.1)
+                if self.read_distance()<250:
+                    return False
+
+                self.turn_by_deg(90)
+        return True
+
 
 
 ###########
