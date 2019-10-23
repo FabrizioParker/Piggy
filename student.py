@@ -134,6 +134,20 @@ class Piggy(PiggyParent):
         self.back()
         time.sleep(2)
         self.stop()
+        self.turn_by_deg(-40)
+        time.sleep(.25)
+        self.fwd()
+        time.sleep(2)
+        self.back()
+        time.sleep(2)
+        self.stop()
+
+
+
+
+
+
+
     
     def safe_to_dance(self):
         for x in range(4):
@@ -142,7 +156,6 @@ class Piggy(PiggyParent):
                 time.sleep(.1)
                 if self.read_distance()<250:
                     return False
-
                 self.turn_by_deg(90)
         return True
 
