@@ -85,6 +85,7 @@ class Piggy(PiggyParent):
         print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
 
     def twist(self):
+        """ turns right then left"""
         self.right()
         time.sleep(1)
         self.stop()
@@ -93,6 +94,7 @@ class Piggy(PiggyParent):
         self.stop()
 
     def spin(self):
+        """ one full circle right & one full circle left """
         self.fwd()
         time.sleep(1)
         self.right()
@@ -105,27 +107,29 @@ class Piggy(PiggyParent):
         self.stop()
 
     def chacha(self):
-        #self.right()
-        #time.sleep(2)
-        #self.stop()
-        #self.back()
-        #time.sleep(1)
+    
+        self.right()
+        time.sleep(2)
+        self.stop()
+        self.back()
+        time.sleep(1)
         self.servo(1000)
         time.sleep(1)
         self.stop()
-        #self.fwd()
-        #time.sleep(1)
-        #self.stop()
+        self.fwd()
+        time.sleep(1)
+        self.stop()
         self.servo(2000)
         time.sleep(1)
         self.stop()
-        #self.left()
-        #time.sleep(2)
-        #self.stop()
+        self.left()
+        time.sleep(2)
+        self.stop()
 
 
         
     def shuffle(self):
+    
         self.turn_by_deg(20)
         time.sleep(.25)
         self.fwd()
