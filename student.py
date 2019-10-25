@@ -62,10 +62,10 @@ class Piggy(PiggyParent):
             return
         else:
             print("time to dance")
-        for x in range(1):
-            #self.twist()
-            #self.spin()
-            #self.chacha()
+        for x in range(3):
+            self.twist()
+            self.spin()
+            self.chacha()
             self.shuffle()
 
 
@@ -129,21 +129,21 @@ class Piggy(PiggyParent):
 
         
     def shuffle(self):
-    
+        """turns 20 degrees and then moves forward and back then turns -40 degrees and goes forward and back"""
         self.turn_by_deg(20)
         time.sleep(.25)
         self.fwd()
-        time.sleep(2)
+        time.sleep(1)
         self.stop()
         self.back()
-        time.sleep(2)
+        time.sleep(1)
         self.stop()
         self.turn_by_deg(-40)
         time.sleep(.25)
         self.fwd()
-        time.sleep(2)
+        time.sleep(1)
         self.back()
-        time.sleep(2)
+        time.sleep(1)
         self.stop()
 
 
