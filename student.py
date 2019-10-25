@@ -65,8 +65,8 @@ class Piggy(PiggyParent):
         for x in range(1):
             #self.twist()
             #self.spin()
-            self.chacha()
-            #self.shuffle()
+            #self.chacha()
+            self.shuffle()
 
 
     def scan(self):
@@ -107,7 +107,8 @@ class Piggy(PiggyParent):
         self.stop()
 
     def chacha(self):
-    
+    """turns right the goes backward and turns its head left 
+        goes forward and its head turns right then turn left """
         self.right()
         time.sleep(2)
         self.stop()
