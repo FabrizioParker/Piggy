@@ -107,8 +107,7 @@ class Piggy(PiggyParent):
         self.stop()
 
     def chacha(self):
-    """turns right the goes backward and turns its head left 
-        goes forward and its head turns right then turn left """
+    """turns right the goes backward and turns its head left goes forward and its head turns right then turn left """
         self.right()
         time.sleep(2)
         self.stop()
