@@ -86,7 +86,7 @@ class Piggy(PiggyParent):
                 found_something = True
                 count += 1
                 print ("I found something")
-                elif self.read_distance() > 250 and found_something::
+                elif self.read_distance() > 250 and found_something:
                     found_something = False
                     print("I have a clear view")
         self.stop()
