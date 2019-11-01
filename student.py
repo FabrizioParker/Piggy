@@ -103,10 +103,8 @@ class Piggy(PiggyParent):
             while self.read_distance() > 100:
                 self.fwd()
                 time.sleep(0.01)
-            self.stop()
             self.turn_by_deg(45)
-            if self.read_distance() > 100:
-                self.turn_by_deg(45)
+            
 
 
     def twist(self):
