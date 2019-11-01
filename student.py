@@ -105,6 +105,10 @@ class Piggy(PiggyParent):
                 time.sleep(0.01)
             self.turn_by_deg(45)
             
+    def left_or_right(self):
+        self.servo(1000)
+        time.sleep(.1)
+        r = self.read_distance()
 
 
     def twist(self):
