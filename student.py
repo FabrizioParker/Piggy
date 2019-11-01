@@ -100,11 +100,13 @@ class Piggy(PiggyParent):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         #print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
         while True:
-            while self.read_distance() > 250:
+            while self.read_distance() > 100:
                 self.fwd()
                 time.sleep(0.01)
             self.stop()
             self.turn_by_deg(45)
+            if self.read_distance() > 100:
+                self.turn_by_deg(45)
 
 
     def twist(self):
