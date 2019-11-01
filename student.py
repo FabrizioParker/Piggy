@@ -81,6 +81,7 @@ class Piggy(PiggyParent):
         count = 0
         starting_postion = self.get_heading()
         self.right(primary=60, counter=60)
+        time.sleep(0.5)
         while self.get_heading() != starting_postion:
             if self.read_distance() < 250 and not found_something:
                 found_something = True
@@ -98,10 +99,13 @@ class Piggy(PiggyParent):
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         #print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
-        while self.read_distance() > 250:
-            self.fwd()
-            time.sleep(0.01)
-        self.stop()
+        while True:
+            while self.read_distance() > 250:
+                self.fwd()
+                time.sleep(0.01)
+            self.stop()
+            self.turn_by_deg(45)
+
 
     def twist(self):
         """ turns right then left"""
