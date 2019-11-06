@@ -17,7 +17,7 @@ class Piggy(PiggyParent):
         '''
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
-        self.MIDPOINT = 1200  
+        self.MIDPOINT = 1500  
         self.load_defaults()# what servo command (1000-2000) is straight forward for your bot?
         
 
@@ -71,7 +71,7 @@ class Piggy(PiggyParent):
 
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
-        for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 15):
+        for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 30):
             self.servo(angle)
             self.scan_data[angle] = self.read_distance()
 
