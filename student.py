@@ -17,7 +17,7 @@ class Piggy(PiggyParent):
         '''
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
-        self.MIDPOINT = 1300  
+        self.MIDPOINT = 1200  
         self.load_defaults()# what servo command (1000-2000) is straight forward for your bot?
         
 
@@ -99,7 +99,7 @@ class Piggy(PiggyParent):
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         #print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
-        while self.read_distance() > 150:
+        while self.read_distance() > 200:
                 self.fwd()
                 time.sleep(0.01)
         self.stop()
