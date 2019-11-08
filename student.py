@@ -101,11 +101,12 @@ class Piggy(PiggyParent):
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         #print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
-        while self.read_distance() > 200:
-            self.fwd()
-            time.sleep(0.01)
-        self.stop()
-        self.left_or_right()
+        while True:
+            while self.read_distance() > 200:
+                self.fwd()
+                time.sleep(0.01)
+            self.stop()
+            self.left_or_right()
 
     def left_or_right(self):
         """turn left or right depending on averaged scan"""
