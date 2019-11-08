@@ -18,6 +18,7 @@ class Piggy(PiggyParent):
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
         self.MIDPOINT = 1500  
+        self.corner_count = 0
         self.load_defaults()# what servo command (1000-2000) is straight forward for your bot?
         
 
@@ -101,6 +102,9 @@ class Piggy(PiggyParent):
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         #print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
+        #counts the corners so you can use it later to get out of them
+        self.corner_count = 0
+        started_at = self.get_heading()
         while True:
             while self.read_distance() > 200:
                 self.fwd()
@@ -110,8 +114,8 @@ class Piggy(PiggyParent):
 
     def left_or_right(self):
         """turn left or right depending on averaged scan"""
-        self.scan()
         #traversal
+        self.corner_count += 1
         left_total = 0
         left_count = 0
         right_total = 0
