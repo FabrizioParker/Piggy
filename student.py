@@ -122,17 +122,8 @@ class Piggy(PiggyParent):
                 self.turn_by_deg(-45)
             else:
                 self.turn_by_deg(45)
-
-
-
                 
-    def left_or_right(self):
-        self.servo(1000)
-        time.sleep(.1)
-        r = self.read_distance()
-
-
-    def twist(self):
+        def twist(self):
         """ turns right then left"""
         self.right()
         time.sleep(1)
