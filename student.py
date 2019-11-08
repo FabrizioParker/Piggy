@@ -118,7 +118,7 @@ class Piggy(PiggyParent):
             if ang < self.MIDPOINT:
                 right_total += dist
                 right_count += 1
-                print(f"Angle: {ang} // dist: {dist} // right_count: {right_count}")
+                print("Angle: %d // dist: %d // right_count: %d" % (ang, dist, right_count))
             else:
                 left_total += dist
                 left_count += 1
