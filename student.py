@@ -124,7 +124,7 @@ class Piggy(PiggyParent):
                 self.turn_by_deg(45)
                 
         def twist(self):
-        """ turns right then left"""
+        """turns right then left"""
         self.right()
         time.sleep(1)
         self.stop()
