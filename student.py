@@ -94,6 +94,7 @@ class Piggy(PiggyParent):
 
         print("I have found this many things: %d" % count)
         return count
+    
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("-------- [ Press CTRL + C to stop me ] --------\n")
@@ -103,6 +104,10 @@ class Piggy(PiggyParent):
                 self.fwd()
                 time.sleep(0.01)
         self.stop()
+        self.left_or_right()
+
+    def left_or_right(self):
+        """turn left or right depending on averaged scan"""
         self.scan()
         #traversal
         left_total = 0
@@ -113,6 +118,7 @@ class Piggy(PiggyParent):
             if ang < self.MIDPOINT:
                 right_total += dist
                 right_count += 1
+                print(f"Angle: {ang} // dist: {dist} // right_count: {right_count}")
             else:
                 left_total += dist
                 left_count += 1
