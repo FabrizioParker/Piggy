@@ -122,6 +122,7 @@ class Piggy(PiggyParent):
         left_count = 0
         right_total = 0
         right_count = 0
+        self.scan()
         for ang, dist in self.scan_data.items():
             if ang < self.MIDPOINT:
                 right_total += dist
