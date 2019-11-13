@@ -111,13 +111,14 @@ class Piggy(PiggyParent):
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         #print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
-        #counts the corners so you can use it later to get out of them
-        self.corner_count = 0
+        
+        
         started_at = self.get_heading()
         while True:
             while self.quick_check():
                 self.fwd()
                 time.sleep(0.01)
+                self.corner_count = 0 #counts the corners so you can use it later to get out of them
             self.stop()
             self.left_or_right()
 
