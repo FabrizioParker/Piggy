@@ -106,7 +106,7 @@ class Piggy(PiggyParent):
         self.corner_count = 0
         started_at = self.get_heading()
         while True:
-            while self.read_distance() > 200:
+            while self.read_distance() > 250:
                 self.fwd()
                 time.sleep(0.01)
             self.stop()
@@ -116,6 +116,8 @@ class Piggy(PiggyParent):
         """turn left or right depending on averaged scan"""
         #traversal
         self.corner_count += 1
+        if self.corner_count > 5:
+            self.turn_by_deg(180)
         left_total = 0
         left_count = 0
         right_total = 0
