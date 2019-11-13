@@ -97,7 +97,7 @@ class Piggy(PiggyParent):
         print("I have found this many things: %d" % count)
         return count
     
-    def quick_check():
+    def quick_check(self):
         """looks around as it moves to check the distance"""
         for ang in range(self.MIDPOINT-150, self.MIDPOINT+151, 150):
             self.servo(ang)
