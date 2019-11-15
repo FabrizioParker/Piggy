@@ -126,7 +126,7 @@ class Piggy(PiggyParent):
         """turn left or right depending on averaged scan"""
         #traversal
         self.corner_count += 1
-        if self.corner_count > 5:
+        if self.corner_count > 3:
             self.turn_by_deg(180)
         left_total = 0
         left_count = 0
