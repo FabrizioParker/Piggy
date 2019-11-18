@@ -20,6 +20,7 @@ class Piggy(PiggyParent):
         self.MIDPOINT = 1500  
         self.corner_count = 0
         self.SAFE_DIST = 250
+        self.starting_postion = 0
         self.load_defaults()# what servo command (1000-2000) is straight forward for your bot?
         
 
@@ -113,7 +114,7 @@ class Piggy(PiggyParent):
         #print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
         
         
-        started_at = self.get_heading()
+        self.starting_postion = self.get_heading()
         while True:
             while self.quick_check():
                 self.fwd()
@@ -128,6 +129,8 @@ class Piggy(PiggyParent):
         self.corner_count += 1
         if self.corner_count > 3:
             self.turn_by_deg(180)
+            self.deg_fwd(720)
+            self.turn_to_deg(self.starting_postion)
         left_total = 0
         left_count = 0
         right_total = 0
