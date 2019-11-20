@@ -129,7 +129,7 @@ class Piggy(PiggyParent):
         self.corner_count += 1
         if self.corner_count > 3:
             self.turn_by_deg(180)
-            self.deg_fwd(720)
+            self.deg_fwd(360)
             self.turn_to_deg(self.starting_postion)
         left_total = 0
         left_count = 0
