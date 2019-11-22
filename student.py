@@ -122,6 +122,10 @@ class Piggy(PiggyParent):
                 self.corner_count = 0 #counts the corners so you can use it later to get out of them
             self.stop()
             self.left_or_right()
+            # how would you make it turn when it is going the wrong direction
+
+
+
 
     def left_or_right(self):
         """turn left or right depending on averaged scan"""
@@ -131,6 +135,7 @@ class Piggy(PiggyParent):
             self.turn_by_deg(180)
             self.deg_fwd(360)
             # what happens when it turns 180 but then goes to starting position  by turning another 180 landing in the same place?  
+            # hopefully will stop the robot from going circles
             if self.read_distance() > self.SAFE_DIST:
                 return
             else:
