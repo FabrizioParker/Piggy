@@ -131,7 +131,7 @@ class Piggy(PiggyParent):
             self.turn_by_deg(180)
             self.deg_fwd(360)
             # what happens when it turns 180 but then goes to starting position  by turning another 180 landing in the same place?  
-            if self.read_distance() > SAFE_DIST:
+            if self.read_distance() > self.SAFE_DIST:
                 pass
                 #?
                 # maybe return ? 
