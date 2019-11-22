@@ -130,6 +130,10 @@ class Piggy(PiggyParent):
         if self.corner_count > 3:
             self.turn_by_deg(180)
             self.deg_fwd(360)
+            # what happens when it turns 180 bu then goes to starting position  by turning another 180 landing in the same place?  
+            if self.read_distance() > SAFE_DIST:
+                #?
+                # maybe return ? 
             self.turn_to_deg(self.starting_postion)
         left_total = 0
         left_count = 0
