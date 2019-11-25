@@ -16,7 +16,7 @@ class Piggy(PiggyParent):
         MAGIC NUMBERS <-- where we hard-code our settings
         '''
         self.LEFT_DEFAULT = 90
-        self.RIGHT_DEFAULT = 97
+        self.RIGHT_DEFAULT = 90
         self.MIDPOINT = 1500  
         self.corner_count = 0
         self.SAFE_DIST = 250
@@ -132,14 +132,7 @@ class Piggy(PiggyParent):
         #traversal
         self.corner_count += 1
         if self.corner_count > 3:
-            self.turn_by_deg(180)
-            self.deg_fwd(360)
-            # what happens when it turns 180 but then goes to starting position  by turning another 180 landing in the same place?  
-            # hopefully will stop the robot from going circles
-            if self.read_distance() > self.SAFE_DIST:
-                return
-            else:
-                self.turn_to_deg(self.starting_postion)
+            self.corner_check()
         left_total = 0
         left_count = 0
         right_total = 0
@@ -159,7 +152,18 @@ class Piggy(PiggyParent):
             self.turn_by_deg(-45)
         else:
             self.turn_by_deg(45)
+
+    def corner_check(self):
+        self.turn_by_deg(180)
+        self.deg_fwd(360)
+        # what happens when it turns 180 but then goes to starting position  by turning another 180 landing in the same place?  
+        # hopefully will stop the robot from going circles
+        if self.read_distance() > self.SAFE_DIST:
+            return
+        else:
+            self.turn_to_deg(self.starting_postion)
                 
+
     def twist(self):
         """turns right then left"""
         self.right()
