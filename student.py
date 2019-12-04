@@ -165,9 +165,10 @@ class Piggy(PiggyParent):
             self.turn_to_deg(self.starting_postion)
                 
     def exit_bias(self):
-        self.get_heading() = self.second_position
-        self.turn_to_deg(self.starting_postion)
         pass
+        #self.get_heading() = self.second_position
+        #self.turn_to_deg(self.starting_postion)
+        
 
     def hold_position(self):
         start = self.get_heading()
