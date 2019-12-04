@@ -36,10 +36,11 @@ class Piggy(PiggyParent):
         ## This is a DICTIONARY, it's a list with custom index values. Python is cool.
         # Please feel free to change the menu and add options.
         print("\n *** MENU ***") 
-        menu = {"n": ("Navigate", self.nav),
+        menu = {"c": ("Calibrate", self.calibrate),
                 "d": ("Dance", self.dance),
+                "h": ("Hold position", self.hold_position),
+                "n": ("Navigate", self.nav),
                 "o": ("Obstacle count", self.obstacle_count),
-                "c": ("Calibrate", self.calibrate),
                 "q": ("Quit", self.quit)
                 }
         # loop and print the menu...
@@ -166,6 +167,14 @@ class Piggy(PiggyParent):
     def exit_bias(self):
         self.get_heading() = self.second_position
         self.turn_to_deg(self.starting_postion)
+        pass
+
+    def hold_position(self):
+        start = self.get_heading()
+        while True:
+            if self.get_heading() == start:
+                self.turn_to_deg(start)
+                
 
     def twist(self):
         """turns right then left"""
