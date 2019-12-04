@@ -172,9 +172,9 @@ class Piggy(PiggyParent):
     def hold_position(self):
         start = self.get_heading()
         while True:
-            if self.get_heading() == start:
+            if self.get_heading() != start:
                 self.turn_to_deg(start)
-                
+
 
     def twist(self):
         """turns right then left"""
