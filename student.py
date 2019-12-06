@@ -135,7 +135,7 @@ class Piggy(PiggyParent):
         if self.corner_count > 3:
             self.corner_check()
         # if robot is facing the wrong way it will turn it around
-        self.get_heading() = current_position
+        current_position = self.get_heading()
         if abs(self.starting_postion - current_position) >90:
             self.turn_to_deg(self.starting_postion)
         left_total = 0
