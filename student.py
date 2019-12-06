@@ -175,7 +175,7 @@ class Piggy(PiggyParent):
         while True:
             time.sleep(.01)
             current = self.get_heading()
-            if abs(start - current) > 30:
+            if abs(start - current) > 15:
                 self.turn_to_deg(start)
 
 
