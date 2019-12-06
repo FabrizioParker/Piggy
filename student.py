@@ -173,7 +173,9 @@ class Piggy(PiggyParent):
     def hold_position(self):
         start = self.get_heading()
         while True:
-            if abs(start - self.get_heading()) > 5:
+            time.sleep(.01)
+            current = self.get_heading()
+            if abs(start - current) > 15:
                 self.turn_to_deg(start)
 
 
