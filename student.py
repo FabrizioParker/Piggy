@@ -134,8 +134,7 @@ class Piggy(PiggyParent):
         self.corner_count += 1
         if self.corner_count > 3:
             self.corner_check()
-        # if robot is facing the wrong way it will turn it around
-        self.exit_bias()
+        
         left_total = 0
         left_count = 0
         right_total = 0
@@ -155,6 +154,8 @@ class Piggy(PiggyParent):
             self.turn_by_deg(-45)
         else:
             self.turn_by_deg(45)
+        # if robot is facing the wrong way it will turn it around
+        self.exit_bias()
 
     def corner_check(self):
         self.turn_by_deg(180)
