@@ -122,19 +122,19 @@ class Piggy(PiggyParent):
                 time.sleep(0.01)
                 self.corner_count = 0 #counts the corners so you can use it later to get out of them
             self.stop()
+            self.corner_work()
             self.left_or_right()
             # how would you make it turn when it is going the wrong direction
 
-
+    def corner_work(self):
+        self.corner_count += 1
+        if self.corner_count > 3:
+            self.corner_check()
 
 
     def left_or_right(self):
         """turn left or right depending on averaged scan"""
         #traversal
-        self.corner_count += 1
-        if self.corner_count > 3:
-            self.corner_check()
-        
         left_total = 0
         left_count = 0
         right_total = 0
@@ -171,6 +171,10 @@ class Piggy(PiggyParent):
         current_position = self.get_heading()
         if abs(self.starting_postion - current_position) >90:
             self.turn_to_deg(self.starting_postion)
+            if self.quick_check():
+                return
+            else:
+                self.left_or_right()
         
 
     def hold_position(self):
