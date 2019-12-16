@@ -169,13 +169,50 @@ class Piggy(PiggyParent):
                 
     def exit_bias(self):
         current_position = self.get_heading()
-        if abs(self.starting_postion - current_position) >90:
+        if abs(self.starting_postion - current_position) >180:
             self.turn_to_deg(self.starting_postion)
             if self.quick_check():
                 return
             else:
                 self.left_or_right()
-        
+    def slither(self):
+        """practice a smooth veer"""
+        #writedown where we started
+        starting_direction = set.get_heading()
+        #start driving forward
+        self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
+        self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
+        self.fwd()
+        # throttl down the left motor
+        for power in range(self.LEFT_DEFAULT, 30,-10):
+            self.set_motor_power(self.MOTOR_LEFT, power)
+            time.sleep(.5)
+        #throttle up the left while lowring the right
+        for power in range(30, self.LEFT_DEFAULT +1, 10):
+            self.set_motor_power(self.MOTOR_LEFT, power)
+            time.sleep(.5)
+        # throttl down the right motor
+        for power in range(self.RIGHT_DEFAULT, 30,-10):
+            self.set_motor_power(self.MOTOR_RIGHT, power)
+            time.sleep(.5)
+        #throttle up the right while lowring the right
+        for power in range(30, self.RIGHT_DEFAULT +1, 10):
+            self.set_motor_power(self.MOTOR_RIGHT, power)
+            time.sleep(.5)
+        left_speed = self.LEFT_DEFAULT
+        right_speed = self.RIGHT_DEFAULT
+        #straighten out
+        while self.get_heading() != starting_direction:
+            #if I need to veer right
+            if self.get_heading() < starting_direction:
+                right_speed -= 10
+            #if I need to veer left
+            elif self.get_heading() > starting_direction:
+                left_speed -= 10
+            self.set_motor_power(self.MOTOR_LEFT, left_speed)
+            self.set_motor_power(self.MOTOR_RIGHT, right_speed)
+            time.sleep(.1)
+
 
     def hold_position(self):
         start = self.get_heading()
