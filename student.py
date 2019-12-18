@@ -156,7 +156,7 @@ class Piggy(PiggyParent):
         else:
             self.turn_by_deg(45)
         # if robot is facing the wrong way it will turn it around
-        self.exit_bias()
+        #self.exit_bias()
 
     def corner_check(self):
         self.turn_by_deg(180)
@@ -168,14 +168,14 @@ class Piggy(PiggyParent):
         else:
             self.turn_to_deg(self.starting_postion)
                 
-    def exit_bias(self):
-        current_position = self.get_heading()
-        if abs(self.starting_postion - current_position) >180:
-            self.turn_to_deg(self.starting_postion)
-            if self.quick_check():
-                return
-            else:
-                self.left_or_right()
+    #def exit_bias(self):
+        #current_position = self.get_heading()
+        #if abs(self.starting_postion - current_position) >180:
+            #self.turn_to_deg(self.starting_postion)
+            #if self.quick_check():
+                #return
+            #else:
+                #self.left_or_right()
     def slither(self):
         """practice a smooth veer"""
         #writedown where we started
