@@ -200,21 +200,20 @@ class Piggy(PiggyParent):
         for power in range(60, self.RIGHT_DEFAULT +1, 10):
             self.set_motor_power(self.MOTOR_RIGHT, power)
             time.sleep(.5)
-        left_speed = self.LEFT_DEFAULT
-        right_speed = self.RIGHT_DEFAULT
+        
         #straighten out
         while self.get_heading() != starting_direction:
             #if I need to veer right
             if self.get_heading() < starting_direction:
-                right_speed -= 5
-                left_speed += 5
+                self.set_motor_power(self.MOTOR_LEFT, 90)
+                self.set_motor_power(self.MOTOR_RIGHT, 70)
             #if I need to veer left
             elif self.get_heading() > starting_direction:
-                left_speed -= 5
-                right_speed +=5
-            self.set_motor_power(self.MOTOR_LEFT, left_speed)
-            self.set_motor_power(self.MOTOR_RIGHT, right_speed)
+                self.set_motor_power(self.MOTOR_LEFT, 70)
+                self.set_motor_power(self.MOTOR_RIGHT, 90)
+            
             time.sleep(.1)
+        self.stop()
 
 
     def hold_position(self):
